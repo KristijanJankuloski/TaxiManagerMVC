@@ -6,6 +6,6 @@ namespace TaxiManager.Services.Interfaces
     {
         void Add(Driver driver);
         List<Driver> GetAll();
-        Driver GetById(string id);
+        Driver GetById(int id);
     }
 }

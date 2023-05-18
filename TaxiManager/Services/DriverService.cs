@@ -16,17 +16,17 @@ namespace TaxiManager.Services
 
         public void Add(Driver driver)
         {
-            throw new NotImplementedException();
+            _driverRepository.Add(driver);
         }
 
         public List<Driver> GetAll()
         {
-            throw new NotImplementedException();
+            return _driverRepository.GetAll();
         }
 
-        public Driver GetById(string id)
+        public Driver GetById(int id)
         {
-            throw new NotImplementedException();
+            return _driverRepository.GetById(id);
         }
     }
 }

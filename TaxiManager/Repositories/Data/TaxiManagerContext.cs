@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
 using TaxiManager.Models;
 
 namespace TaxiManager.Repositories.Data
@@ -14,10 +13,8 @@ namespace TaxiManager.Repositories.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connectionString = "";
-            using (ConfigurationManager _configuration = new ConfigurationManager())
-            {
-                connectionString = _configuration.GetConnectionString("TaxiManagerDatabase");
-            }
+            var config = new ConfigurationBuilder().Build();
+            connectionString = config.GetConnectionString("TaxiManagerDatabase");
             optionsBuilder.UseSqlServer(connectionString);
         }
     }

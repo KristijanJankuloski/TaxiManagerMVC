@@ -1,0 +1,15 @@
+﻿@using TaxiManager.Enums;
+@model User
+<div class="container">
+    <form method="post">
+        <label asp-for="Username" class="form-label"></label>
+        <input asp-for="Username" class="form-control"/>
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <label asp-for="Role" class="form-label"></label>
+        <select asp-for="Role" asp-items="Html.GetEnumSelectList<Role>()" class="form-control"></select>
+        <div class="form-group">
+        <button type="submit" class="btn btn-success">Register user</button>
+        </div>
+    </form>
+</div>

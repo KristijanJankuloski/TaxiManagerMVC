@@ -1,13 +1,18 @@
-﻿using TaxiManager.Enums;
+﻿using System.ComponentModel;
+using TaxiManager.Enums;
 
 namespace TaxiManager.Models
 {
     public class Driver
     {
         public int Id { get; set; }
+        [DisplayName("First Name")]
         public string FirstName { get; set; } = null!;
+        [DisplayName("Last Name")]
         public string LastName { get; set; } = null!;
+        [DisplayName("Taxi License")]
         public string TaxiLicense { get; set; } = null!;
+        [DisplayName("License Expiration Date")]
         public DateTime LicenseExpDate { get; set; }
         public Shift? Shift { get; set; }
         public int CarId { get; set; }

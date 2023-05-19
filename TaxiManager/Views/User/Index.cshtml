@@ -1,0 +1,29 @@
+﻿@model List<User>
+
+<div class="container">
+    <div>
+        <div class="text-end">
+            <a asp-controller="User" asp-action="Register" class="btn btn-lg btn-success">Register new user</a>
+        </div>
+        <h2 class="display-3">All Users</h2>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var obj in Model)
+            {
+                <tr>
+                    <td>@obj.Id</td>
+                    <td>@obj.Username</td>
+                    <td>@obj.Role</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

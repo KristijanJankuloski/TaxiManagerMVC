@@ -10,12 +10,13 @@ namespace TaxiManager.Repositories.Data
         public DbSet<Car> Cars { get; set; } = null!;
         public DbSet<Driver> Drivers { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            string connectionString = "";
-            var config = new ConfigurationBuilder().Build();
-            connectionString = config.GetConnectionString("TaxiManagerDatabase");
-            optionsBuilder.UseSqlServer(connectionString);
-        }
+        public TaxiManagerContext(DbContextOptions<TaxiManagerContext> options) : base(options){}
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    string connectionString = "";
+        //    var config = new ConfigurationBuilder().Build();
+        //    connectionString = config.GetConnectionString("TaxiManagerDatabase");
+        //    optionsBuilder.UseSqlServer(connectionString);
+        //}
     }
 }

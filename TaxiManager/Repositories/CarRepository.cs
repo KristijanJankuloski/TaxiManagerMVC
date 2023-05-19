@@ -8,39 +8,40 @@ namespace TaxiManager.Repositories
 {
     public class CarRepository : ICarRepository
     {
+        private readonly TaxiManagerContext _context;
+
+        public CarRepository(TaxiManagerContext context)
+        {
+            _context = context;
+        }
         public void Add(Car car)
         {
-            using var context = new TaxiManagerContext();
-            context.Cars.Add(car);
-            context.SaveChanges();
+            _context.Cars.Add(car);
+            _context.SaveChanges();
         }
 
         public void DeleteById(int id)
         {
-            using var context = new TaxiManagerContext();
-            Car? car = context.Cars.Where(x => x.Id == id).FirstOrDefault();
+            Car? car = _context.Cars.Where(x => x.Id == id).FirstOrDefault();
             if (car == null)
                 throw new NoDataFoundException($"No car found with id:{id}");
-            context.Cars.Remove(car);
-            context.SaveChanges();
+            _context.Cars.Remove(car);
+            _context.SaveChanges();
         }
 
         public List<Car> GetAll()
         {
-            using var context = new TaxiManagerContext();
-            return context.Cars.Include(c => c.AssignedDrivers).ToList();
+            return _context.Cars.Include(c => c.AssignedDrivers).ToList();
         }
 
         public List<Car> GetAvailable()
         {
-            using var context = new TaxiManagerContext();
-            return context.Cars.Include(c => c.AssignedDrivers).Where(x => x.AssignedDrivers.Count < 3).ToList();
+            return _context.Cars.Include(c => c.AssignedDrivers).Where(x => x.AssignedDrivers.Count < 3).ToList();
         }
 
         public Car GetById(int id)
         {
-            using var context = new TaxiManagerContext();
-            Car? car = context.Cars.Include(c => c.AssignedDrivers).FirstOrDefault(x => x.Id == id);
+            Car? car = _context.Cars.Include(c => c.AssignedDrivers).FirstOrDefault(x => x.Id == id);
             if (car == null)
                 throw new NoDataFoundException($"No car found matching id:{id}");
             return car;
@@ -48,12 +49,11 @@ namespace TaxiManager.Repositories
 
         public void Update(Car car)
         {
-            using var context = new TaxiManagerContext();
-            Car? carToEdit = context.Cars.FirstOrDefault(x => x.Id == car.Id);
+            Car? carToEdit = _context.Cars.FirstOrDefault(x => x.Id == car.Id);
             if (carToEdit == null)
                 throw new NoDataFoundException($"No car found matching: {car.Id}");
             carToEdit = car;
-            context.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

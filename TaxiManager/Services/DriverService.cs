@@ -9,9 +9,9 @@ namespace TaxiManager.Services
     {
         private IDriverRepository _driverRepository;
 
-        public DriverService()
+        public DriverService(IDriverRepository driverRepository)
         {
-            _driverRepository = new DriverRepository();
+            _driverRepository = driverRepository;
         }
 
         public void Add(Driver driver)

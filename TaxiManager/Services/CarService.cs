@@ -9,9 +9,9 @@ namespace TaxiManager.Services
     {
         private ICarRepository _carRepository;
 
-        public CarService()
+        public CarService(ICarRepository carRepository)
         {
-            _carRepository = new CarRepository();
+            _carRepository = carRepository;
         }
 
         public void Add(Car car)

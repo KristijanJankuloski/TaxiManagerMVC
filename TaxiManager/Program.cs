@@ -1,7 +1,22 @@
+using Microsoft.EntityFrameworkCore;
+using TaxiManager.Repositories;
+using TaxiManager.Repositories.Data;
+using TaxiManager.Repositories.Interfaces;
+using TaxiManager.Services;
+using TaxiManager.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<TaxiManagerContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TaxiManagerDatabase")));
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICarRepository, CarRepository>();
+builder.Services.AddScoped<IDriverRepository, DriverRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICarService, CarService>();
+builder.Services.AddScoped<IDriverService, DriverService>();
 
 var app = builder.Build();
 

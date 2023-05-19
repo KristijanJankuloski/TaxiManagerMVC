@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
 }
+@model string?
 
 <!DOCTYPE html>
 
@@ -17,6 +18,22 @@
         <div class="d-flex justify-content-center">
             <form method="post" action="/login">
                 <h1 class="display-2">Login to Taxi Manager</h1>
+                @if (Model == "invalid_credentials")
+                {
+                    <div class="p-2">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error:</strong> Username or Passowrd is incorrect.
+                        </div>
+                    </div>
+                }
+                @if (Model == "invalid_input")
+                {
+                    <div class="p-2">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error:</strong> Username and Password must not be empty.
+                        </div>
+                    </div>
+                }
                 <div class="p-2">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username" placeholder="username" />

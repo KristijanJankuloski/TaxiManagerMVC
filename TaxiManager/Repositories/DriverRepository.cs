@@ -7,33 +7,35 @@ namespace TaxiManager.Repositories
 {
     public class DriverRepository : IDriverRepository
     {
+        private readonly TaxiManagerContext _context;
+        public DriverRepository(TaxiManagerContext context)
+        {
+            _context = context;
+        }
+
         public void Add(Driver driver)
         {
-            using var context = new TaxiManagerContext();
-            context.Drivers.Add(driver);
-            context.SaveChanges();
+            _context.Drivers.Add(driver);
+            _context.SaveChanges();
         }
 
         public void DeleteById(int id)
         {
-            using var context = new TaxiManagerContext();
-            Driver driverToDelete = context.Drivers.FirstOrDefault(x => x.Id == id);
+            Driver driverToDelete = _context.Drivers.FirstOrDefault(x => x.Id == id);
             if (driverToDelete == null)
                 throw new NoDataFoundException($"No driver found with id:{id}");
-            context.Drivers.Remove(driverToDelete);
-            context.SaveChanges();
+            _context.Drivers.Remove(driverToDelete);
+            _context.SaveChanges();
         }
 
         public List<Driver> GetAll()
         {
-            using var context = new TaxiManagerContext();
-            return context.Drivers.ToList();
+            return _context.Drivers.ToList();
         }
 
         public Driver GetById(int id)
         {
-            using var context = new TaxiManagerContext();
-            Driver driver = context.Drivers.FirstOrDefault(x => x.Id == id);
+            Driver driver = _context.Drivers.FirstOrDefault(x => x.Id == id);
             if (driver == null)
                 throw new NoDataFoundException($"No driver found with id:{id}");
             return driver;
@@ -41,12 +43,11 @@ namespace TaxiManager.Repositories
 
         public void Update(Driver driver)
         {
-            using var context = new TaxiManagerContext();
-            Driver driverToEdit = context.Drivers.FirstOrDefault(x => x.Id == driver.Id);
+            Driver driverToEdit = _context.Drivers.FirstOrDefault(x => x.Id == driver.Id);
             if (driverToEdit == null)
                 throw new NoDataFoundException($"No driver found with id:{driver.Id}");
             driverToEdit = driver;
-            context.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

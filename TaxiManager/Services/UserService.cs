@@ -10,9 +10,9 @@ namespace TaxiManager.Services
     {
         private IUserRepository _userRepository;
 
-        public UserService()
+        public UserService(IUserRepository userRepository)
         {
-            _userRepository = new UserRepository();
+            _userRepository = userRepository;
         }
 
         public void Add(User user)

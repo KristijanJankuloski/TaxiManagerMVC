@@ -1,4 +1,4 @@
-namespace TaxiManager.Models
+namespace TaxiManager.Models.Models
 {
     public class ErrorViewModel
     {

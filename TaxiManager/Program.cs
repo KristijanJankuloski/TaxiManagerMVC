@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using TaxiManager.Repositories;
-using TaxiManager.Repositories.Data;
-using TaxiManager.Repositories.Interfaces;
+using TaxiManager.DataAccess.Repositories;
+using TaxiManager.DataAccess.Repositories.Data;
+using TaxiManager.DataAccess.Repositories.Interfaces;
 using TaxiManager.Services;
 using TaxiManager.Services.Interfaces;
 

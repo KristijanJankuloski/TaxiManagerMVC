@@ -1,4 +1,4 @@
-﻿using TaxiManager.Models;
+﻿using TaxiManager.Models.Models;
 
 namespace TaxiManager.Services.Interfaces
 {

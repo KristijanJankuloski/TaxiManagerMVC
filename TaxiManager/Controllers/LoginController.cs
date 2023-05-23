@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaxiManager.Enums;
-using TaxiManager.Models;
+using TaxiManager.Models.Enums;
+using TaxiManager.Models.Models;
 using TaxiManager.Services.Interfaces;
 
 namespace TaxiManager.Controllers

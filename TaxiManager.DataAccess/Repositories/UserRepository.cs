@@ -3,7 +3,7 @@ using TaxiManager.Models.Models;
 using TaxiManager.DataAccess.Repositories.Data;
 using TaxiManager.DataAccess.Repositories.Interfaces;
 
-namespace TaxiManager.Repositories
+namespace TaxiManager.DataAccess.Repositories
 {
     public class UserRepository : IUserRepository
     {

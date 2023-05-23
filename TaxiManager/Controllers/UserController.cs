@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaxiManager.Models;
+using TaxiManager.Models.Models;
 using TaxiManager.Services.Interfaces;
 
 namespace TaxiManager.Controllers

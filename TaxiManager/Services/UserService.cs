@@ -1,7 +1,7 @@
 ﻿using BCrypt.Net;
-using TaxiManager.Models;
-using TaxiManager.Repositories;
-using TaxiManager.Repositories.Interfaces;
+using TaxiManager.Models.Models;
+using TaxiManager.DataAccess.Repositories;
+using TaxiManager.DataAccess.Repositories.Interfaces;
 using TaxiManager.Services.Interfaces;
 
 namespace TaxiManager.Services

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using TaxiManager.Models;
+using TaxiManager.Models.Models;
 
 namespace TaxiManager.Controllers
 {

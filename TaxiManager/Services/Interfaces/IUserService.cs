@@ -10,5 +10,6 @@ namespace TaxiManager.Services.Interfaces
         User GetByUsername(string username);
         User Login(string username, string password);
         void ChangePassowrd(string username, string oldPassword, string newPassword);
+        void DeleteById(int id);
     }
 }

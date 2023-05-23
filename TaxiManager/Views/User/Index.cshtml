@@ -22,6 +22,7 @@
                     <td>@obj.Id</td>
                     <td>@obj.Username</td>
                     <td>@obj.Role</td>
+                    <td><a asp-controller="User" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-sm btn-danger mx-auto"><i class="bi bi-trash"></i> Delete</a></td>
                 </tr>
             }
         </tbody>

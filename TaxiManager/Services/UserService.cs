@@ -32,6 +32,11 @@ namespace TaxiManager.Services
             _userRepository.Update(user);
         }
 
+        public void DeleteById(int id)
+        {
+            _userRepository.DeleteById(id);
+        }
+
         public List<User> GetAll()
         {
             return _userRepository.GetAll();

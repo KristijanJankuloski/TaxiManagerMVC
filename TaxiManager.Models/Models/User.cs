@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TaxiManager.Enums;
+using TaxiManager.Models.Enums;
 
-namespace TaxiManager.Models
+namespace TaxiManager.Models.Models
 {
     public class User
     {

@@ -25,14 +25,45 @@ namespace TaxiManager.Controllers
         [HttpPost]
         public IActionResult Register(User user)
         {
-            if (user == null)
-                return Redirect("Register");
+            if (ModelState.IsValid)
+            {
+                _userService.Add(user);
+                TempData["success"] = "User registered successfully";
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
 
-            if (user.Username == "" || user.Password == "")
-                return Redirect("Register");
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+                return NotFound();
+            try{
+                User userToDelete = _userService.GetById((int)id);
+                return View(userToDelete);
+            }
+            catch(Exception ex)
+            {
+                return NotFound();
+            }
+        }
 
-            _userService.Add(user);
-            return Redirect("Index");
+        [HttpPost]
+        public IActionResult Delete(User user)
+        {
+            if(user == null)
+                return NotFound();
+            try
+            {
+                _userService.DeleteById(user.Id);
+                TempData["success"] = "User deleted successfully";
+                return RedirectToAction("Index");
+            }
+            catch(Exception ex)
+            {
+                TempData["error"] = ex.Message;
+                return RedirectToAction("Index");
+            }
         }
     }
 }

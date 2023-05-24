@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaxiManager.Models.Models;
 using TaxiManager.Services.Interfaces;
+using TaxiManager.Utils;
 
 namespace TaxiManager.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = Roles.ADMIN)]
     public class CarController : Controller
     {
         private ICarService _carService;

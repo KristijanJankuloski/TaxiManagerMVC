@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
       <PrivateAssets>all</PrivateAssets>
@@ -25,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TaxiManager.DataAccess\TaxiManager.DataAccess.csproj" />
     <ProjectReference Include="..\TaxiManager.Models\TaxiManager.Models.csproj" />
+    <ProjectReference Include="..\TaxiManager.Utils\TaxiManager.Utils.csproj" />
   </ItemGroup>
 
 </Project>

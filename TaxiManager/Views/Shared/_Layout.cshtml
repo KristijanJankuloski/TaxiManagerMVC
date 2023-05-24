@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using TaxiManager.Utils;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -27,41 +28,53 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Home" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Manage
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Car" asp-action="Index">Cars</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Driver" asp-action="Index">Drivers</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Manager" asp-controller="DriverStatus" asp-action="Index">Driver status</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Manager" asp-controller="DriverAssign" asp-action="Index">Assign driver</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Manager" asp-controller="DriverUnassign" asp-action="Index">Unassign driver</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Maintenance" asp-controller="CarStatus" asp-action="Index">Car status</a>
-                        </li>
+                        @if (User.IsInRole(Roles.ADMIN))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Manage
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    @*<li>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
+                                    </li>*@
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Car" asp-action="Index">Cars</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Driver" asp-action="Index">Drivers</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        @if (User.IsInRole(Roles.MANAGER))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Manager" asp-controller="DriverStatus" asp-action="Index">Driver status</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Manager" asp-controller="DriverAssign" asp-action="Index">Assign driver</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Manager" asp-controller="DriverUnassign" asp-action="Index">Unassign driver</a>
+                            </li>
+                        }
+                        @if (User.IsInRole(Roles.MAINTENANCE))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Maintenance" asp-controller="CarStatus" asp-action="Index">Car status</a>
+                            </li>
+                        }
                     </ul>
+                    <div class="me-auto">
+                        <partial name="_LoginPartial" />
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <partial name="_Notification"/>
+        <partial name="_Notification" />
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

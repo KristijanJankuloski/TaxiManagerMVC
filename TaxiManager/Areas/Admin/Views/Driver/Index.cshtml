@@ -1,0 +1,38 @@
+﻿@model List<Driver>
+<div class="container">
+    <div>
+        <div class="text-end">
+            <a asp-controller="Driver" asp-action="Add" class="btn btn-lg btn-success">Add new driver</a>
+        </div>
+        <h2 class="display-3">All Drivers</h2>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Taxi license</th>
+                <th>License expire date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td>@obj.Id</td>
+                    <td>@obj.FirstName</td>
+                    <td>@obj.LastName</td>
+                    <td>@obj.TaxiLicense</td>
+                    <td>@obj.LicenseExpDate.ToLongDateString()</td>
+                    <td>
+                        <a asp-controller="Driver" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-sm btn-primary mx-auto"><i class="bi bi-pencil-square"></i> Edit</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Driver" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-sm btn-danger mx-auto"><i class="bi bi-trash"></i> Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

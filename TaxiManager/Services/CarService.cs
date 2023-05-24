@@ -38,5 +38,10 @@ namespace TaxiManager.Services
         {
             return _carRepository.GetById(id);
         }
+
+        public void Update(Car car)
+        {
+            _carRepository.Update(car);
+        }
     }
 }

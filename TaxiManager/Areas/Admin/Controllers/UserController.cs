@@ -2,8 +2,9 @@
 using TaxiManager.Models.Models;
 using TaxiManager.Services.Interfaces;
 
-namespace TaxiManager.Controllers
+namespace TaxiManager.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class UserController : Controller
     {
         private readonly IUserService _userService;
@@ -38,11 +39,12 @@ namespace TaxiManager.Controllers
         {
             if (id == null || id == 0)
                 return NotFound();
-            try{
+            try
+            {
                 User userToDelete = _userService.GetById((int)id);
                 return View(userToDelete);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return NotFound();
             }
@@ -51,7 +53,7 @@ namespace TaxiManager.Controllers
         [HttpPost]
         public IActionResult Delete(User user)
         {
-            if(user == null)
+            if (user == null)
                 return NotFound();
             try
             {
@@ -59,7 +61,7 @@ namespace TaxiManager.Controllers
                 TempData["success"] = "User deleted successfully";
                 return RedirectToAction("Index");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TempData["error"] = ex.Message;
                 return RedirectToAction("Index");

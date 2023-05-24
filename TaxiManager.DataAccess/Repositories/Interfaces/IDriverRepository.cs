@@ -2,12 +2,13 @@
 
 namespace TaxiManager.DataAccess.Repositories.Interfaces
 {
-    public interface IDriverRepository
+    public interface IDriverRepository : IRepository<Driver>
     {
-        void Add(Driver driver);
-        List<Driver> GetAll();
-        Driver GetById(int id);
-        void DeleteById(int id);
-        void Update(Driver driver);
+        //void Add(Driver driver);
+        //List<Driver> GetAll();
+        //Driver GetById(int id);
+        //void DeleteById(int id);
+        //void Update(Driver driver);
+        List<Driver> GetNotAssigned();
     }
 }

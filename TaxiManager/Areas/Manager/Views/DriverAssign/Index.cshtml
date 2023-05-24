@@ -1,0 +1,32 @@
+﻿@model List<Driver>
+
+<div class="container">
+    <div>
+        <h2 class="display-3">Assign a driver</h2>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Taxi License</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var obj in Model)
+            {
+                <tr>
+                    <td>@obj.Id</td>
+                    <td>@obj.FirstName</td>
+                    <td>@obj.LastName</td>
+                    <td>@obj.TaxiLicense</td>
+                    <td>
+                        <a asp-controller="DriverAssign" asp-action="AssignToCar" asp-route-id="@obj.Id" class="btn btn-sm btn-primary mx-auto"><i class="bi bi-car-front-fill"></i> Assign to car</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

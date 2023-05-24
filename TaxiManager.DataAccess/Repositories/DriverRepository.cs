@@ -2,6 +2,7 @@
 using TaxiManager.Models.Models;
 using TaxiManager.DataAccess.Repositories.Data;
 using TaxiManager.DataAccess.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace TaxiManager.DataAccess.Repositories
 {
@@ -39,6 +40,11 @@ namespace TaxiManager.DataAccess.Repositories
             if (driver == null)
                 throw new NoDataFoundException($"No driver found with id:{id}");
             return driver;
+        }
+
+        public List<Driver> GetNotAssigned()
+        {
+            return _context.Drivers.Where(d => d.CarId == null).ToList();
         }
 
         public void Update(Driver driver)

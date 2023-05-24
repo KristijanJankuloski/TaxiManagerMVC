@@ -1,0 +1,37 @@
+﻿@model Driver
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title display-3">Delete driver</h2>
+    </div>
+    <div class="card-body">
+        <div class="container-lg">
+            <form method="post">
+                <div class="mb-3">
+                    <label asp-for="FirstName" class="form-label"></label>
+                    <input asp-for="FirstName" class="form-control" disabled />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="LastName" class="form-label"></label>
+                    <input asp-for="LastName" class="form-control" disabled />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="TaxiLicense" class="form-label"></label>
+                    <input asp-for="TaxiLicense" class="form-control" disabled />
+                    <span asp-validation-for="TaxiLicense" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="LicenseExpDate" class="form-label"></label>
+                    <input asp-for="LicenseExpDate" type="date" class="form-control" disabled />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-danger">Delete driver</button>
+                    <a asp-controller="Driver" asp-action="Index" class="btn btn-secondary">Go back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

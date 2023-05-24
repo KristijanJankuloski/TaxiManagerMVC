@@ -19,6 +19,11 @@ namespace TaxiManager.Services
             _driverRepository.Add(driver);
         }
 
+        public void DeleteById(int id)
+        {
+            _driverRepository.DeleteById(id);
+        }
+
         public List<Driver> GetAll()
         {
             return _driverRepository.GetAll();
@@ -27,6 +32,16 @@ namespace TaxiManager.Services
         public Driver GetById(int id)
         {
             return _driverRepository.GetById(id);
+        }
+
+        public List<Driver> GetNotAssigned()
+        {
+            return _driverRepository.GetNotAssigned();
+        }
+
+        public void Update(Driver driver)
+        {
+            _driverRepository.Update(driver);
         }
     }
 }

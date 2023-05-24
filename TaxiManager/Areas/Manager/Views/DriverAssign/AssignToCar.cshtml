@@ -1,0 +1,23 @@
+﻿@model AssignDriverVM
+
+<div class="card">
+    <div class="card-header">
+        <h2 class="card-title display-3">Assign @Model.Driver.FirstName @Model.Driver.LastName to car</h2>
+    </div>
+    <div class="card-body">
+        <div class="container-lg">
+            <form method="post">
+                <h4>Available cars</h4>
+                @foreach (var car in Model.Cars)
+                {
+                    <input type="radio" name="id" class="form-check-input" id="@car.LicensePlate" value="@car.Id" />
+                    <label for="@car.LicensePlate" class="form-check-label">@car.Model - @car.LicensePlate</label>
+                }
+                <div class="p-3">
+                    <button type="submit" class="btn btn-success">Assign driver</button>
+                    <a asp-controller="DriverAssign" asp-action="Index" class="btn btn-secondary">Go back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

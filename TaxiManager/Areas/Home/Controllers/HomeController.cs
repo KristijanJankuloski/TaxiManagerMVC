@@ -2,8 +2,9 @@
 using System.Diagnostics;
 using TaxiManager.Models.Models;
 
-namespace TaxiManager.Controllers
+namespace TaxiManager.Areas.Home.Controllers
 {
+    [Area("Home")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

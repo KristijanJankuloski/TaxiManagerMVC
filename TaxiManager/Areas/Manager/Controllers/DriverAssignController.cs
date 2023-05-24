@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TaxiManager.Models.Enums;
 using TaxiManager.Models.Models;
 using TaxiManager.Models.ViewModels;
 using TaxiManager.Services.Interfaces;
@@ -24,7 +25,7 @@ namespace TaxiManager.Areas.Manager.Controllers
 
         public IActionResult AssignToCar(int? id)
         {
-            if(id == null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
@@ -39,10 +40,25 @@ namespace TaxiManager.Areas.Manager.Controllers
         }
 
         [HttpPost]
-        public IActionResult AssignToCar(int id)
+        public IActionResult AssignToCar(int carId, int driverId, Shift shift)
         {
-            TempData["success"] = id;
-            return RedirectToAction("Index");
+            Car car = _carService.GetById(carId);
+            try
+            {
+                if (!_carService.IsAvailable(car))
+                {
+                    TempData["error"] = "Car is not available";
+                    return RedirectToAction("index");
+                }
+                _driverService.AssignToCar(driverId, car, shift);
+                TempData["success"] = "Driver successfully assigned to car";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = ex.Message;
+                return RedirectToAction("index");
+            }
         }
     }
 }

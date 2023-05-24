@@ -1,4 +1,5 @@
-﻿@model AssignDriverVM
+﻿@using TaxiManager.Models.Enums;
+@model AssignDriverVM
 
 <div class="card">
     <div class="card-header">
@@ -8,11 +9,19 @@
         <div class="container-lg">
             <form method="post">
                 <h4>Available cars</h4>
-                @foreach (var car in Model.Cars)
-                {
-                    <input type="radio" name="id" class="form-check-input" id="@car.LicensePlate" value="@car.Id" />
-                    <label for="@car.LicensePlate" class="form-check-label">@car.Model - @car.LicensePlate</label>
-                }
+                <div class="mb-3">
+                    @foreach (var car in Model.Cars)
+                    {
+                        <input type="hidden" hidden name="driverId" value="@Model.Driver.Id" />
+                        <input type="radio" name="carId" class="form-check-input" id="@car.LicensePlate" value="@car.Id" />
+                        <label for="@car.LicensePlate" class="form-check-label">@car.Model - @car.LicensePlate</label>
+                    }
+                </div>
+                <div class="mb-3">
+                    <select name="shift" required asp-items="Html.GetEnumSelectList<Shift>()" class="form-select">
+                        <option selected disabled>--Select Shift--</option>
+                    </select>
+                </div>
                 <div class="p-3">
                     <button type="submit" class="btn btn-success">Assign driver</button>
                     <a asp-controller="DriverAssign" asp-action="Index" class="btn btn-secondary">Go back</a>

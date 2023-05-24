@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using TaxiManager.Models.Enums;
 
 namespace TaxiManager.Models.Models
 {
@@ -22,6 +23,21 @@ namespace TaxiManager.Models.Models
         public Car()
         {
             AssignedDrivers = new List<Driver>();
+        }
+
+        public LicenseStatus GetLicenseStatus()
+        {
+            DateTime today = DateTime.Now;
+            if (LicenseExpDate < today)
+                return LicenseStatus.Expired;
+            if (LicenseExpDate < today.AddMonths(3))
+                return LicenseStatus.Warning;
+            return LicenseStatus.Valid;
+        }
+
+        public int GetUssage()
+        {
+            return (AssignedDrivers.Count * 100) / 3;
         }
     }
 }

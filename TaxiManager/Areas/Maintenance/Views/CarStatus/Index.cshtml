@@ -1,0 +1,44 @@
+﻿@using TaxiManager.Models.Enums;
+@model List<Car>
+
+<div class="container">
+    <div>
+        <h2 class="display-3">Car status</h2>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>Status</td>
+                    <td>Model</td>
+                    <td>License Plate</td>
+                    <td>Expire Date</td>
+                    <td>Utilization</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var car in Model)
+                {
+                    <tr>
+                        @if(car.GetLicenseStatus() == LicenseStatus.Expired)
+                        {
+                            <td class="bg-danger text-white">@car.GetLicenseStatus()</td>
+                        }
+                        @if(car.GetLicenseStatus() == LicenseStatus.Warning)
+                        {
+                            <td class="bg-warning text-white">@car.GetLicenseStatus()</td>
+                        }
+                        @if(car.GetLicenseStatus() == LicenseStatus.Valid)
+                        {
+                            <td class="bg-success text-white">@car.GetLicenseStatus()</td>
+                        }
+                        <td>@car.Model</td>
+                        <td>@car.LicensePlate</td>
+                        <td>@car.LicenseExpDate.ToLongDateString()</td>
+                        <td>@car.GetUssage()%</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

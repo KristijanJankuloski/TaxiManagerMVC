@@ -39,6 +39,15 @@ namespace TaxiManager.Services
             return _carRepository.GetById(id);
         }
 
+        public bool IsAvailable(Car car)
+        {
+            if(car.AssignedDrivers.Count < 3)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public void Update(Car car)
         {
             _carRepository.Update(car);

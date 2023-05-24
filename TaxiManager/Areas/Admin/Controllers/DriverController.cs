@@ -56,8 +56,8 @@ namespace TaxiManager.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _driverService.Update(driver);
-                    TempData["successs"] = "Driver updated successfully";
+                    _driverService.UpdateInfo(driver);
+                    TempData["success"] = "Driver updated successfully";
                     return RedirectToAction("Index");
                 }
                 return View();

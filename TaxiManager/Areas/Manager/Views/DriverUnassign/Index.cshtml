@@ -1,0 +1,32 @@
+﻿@model List<Driver>
+
+<div class="container">
+    <div>
+        <h2 class="display-3">
+            Unassign drivers
+        </h2>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Driver Name</th>
+                <th>Shift</th>
+                <th>Car model</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var driver in Model)
+            {
+                <tr>
+                    <td>@driver.FirstName @driver.LastName</td>
+                    <td>@driver.Shift</td>
+                    <td>@driver.Car.Model</td>
+                    <td>
+                        <a asp-controller="DriverUnassign" asp-action="Unassign" asp-route-id="@driver.Id" class="btn btn-sm btn-warning"><i class="bi bi-door-open"></i> Unassign</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

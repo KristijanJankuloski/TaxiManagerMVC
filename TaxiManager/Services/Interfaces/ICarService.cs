@@ -10,5 +10,6 @@ namespace TaxiManager.Services.Interfaces
         void DeleteById(int id);
         void Update(Car car);
         List<Car> GetAvailable();
+        bool IsAvailable(Car car);
     }
 }

@@ -1,4 +1,34 @@
-﻿@*@using TaxiManager.Models.Enums;
+﻿@using Microsoft.AspNetCore.Identity;
+@model IdentityUser
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title display-3">Delete user</div>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <div class="mb-3">
+                <label asp-for="UserName" class="form-label"></label>
+                <input asp-for="UserName" disabled class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" disabled class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Id" class="form-label"></label>
+                <input asp-for="Id" disabled class="form-control" />
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-danger">Delete user</button>
+                <a asp-controller="User" asp-action="Index" class="btn btn-secondary">Go back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@*@using TaxiManager.Models.Enums;
 @model User
 <div class="card">
     <div class="card-header">

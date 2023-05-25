@@ -1,6 +1,49 @@
-﻿//using Microsoft.AspNetCore.Mvc;
-//using TaxiManager.Models.Models;
-//using TaxiManager.Services.Interfaces;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using TaxiManager.Models.Models;
+using TaxiManager.Services.Interfaces;
+using TaxiManager.Utils;
+
+namespace TaxiManager.Areas.Admin.Controllers
+{
+    [Area("Admin")]
+    [Authorize(Roles = Roles.ADMIN)]
+    public class UserController : Controller
+    {
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public UserController(UserManager<IdentityUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
+        public IActionResult Index()
+        {
+            List<IdentityUser> users = _userManager.Users.ToList();
+            return View(users);
+        }
+
+        public IActionResult Delete(string id)
+        {
+            IdentityUser user = _userManager.Users.Where(u => u.Id == id).FirstOrDefault();
+            return View(user);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(IdentityUser user)
+        {
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var foundUser = _userManager.FindByIdAsync(user.Id).GetAwaiter().GetResult();
+            var result = _userManager.DeleteAsync(foundUser).GetAwaiter().GetResult();
+            TempData["success"] = "User deleted successfully";
+            return RedirectToAction("Index");
+        }
+    }
+}
 
 //namespace TaxiManager.Areas.Admin.Controllers
 //{
@@ -69,3 +112,4 @@
 //        }
 //    }
 //}
+

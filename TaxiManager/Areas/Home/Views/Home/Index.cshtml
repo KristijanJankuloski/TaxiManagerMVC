@@ -1,8 +1,114 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity;
+@using TaxiManager.Utils;
+@{
     ViewData["Title"] = "Home Page";
 }
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    @if (!SignInManager.IsSignedIn(User))
+    {
+        <h1 class="display-3">Welcome to Taxi Manager</h1>
+        <p>Please <a asp-area="Identity" asp-page="/Account/Login">Loin</a> to use the services.</p>
+    }
+    else
+    {
+        <h1 class="display-3">Welcome back @UserManager.GetUserName(User)</h1>
+        @if (User.IsInRole(Roles.ADMIN))
+        {
+            <p>Here are all the actions you have available to you as an administrator</p>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="display-6">Users</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Use this to manage the users in Taxi Manager</p>
+                            <a asp-area="Admin" asp-controller="User" asp-action="Index" class="btn btn-primary">Go to</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="display-6">Cars</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Use this to manage the cars in Taxi Manager</p>
+                            <a asp-area="Admin" asp-controller="Car" asp-action="Index" class="btn btn-primary">Go to</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="display-6">Drivers</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Use this to manage the drivers in Taxi Manager</p>
+                            <a asp-area="Admin" asp-controller="Driver" asp-action="Index" class="btn btn-primary">Go to</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (User.IsInRole(Roles.MANAGER))
+        {
+            <p>Here are all the actions you have available to you as a manager</p>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="display-6">Driver status</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Use this to see driver license status</p>
+                            <a asp-area="Manager" asp-controller="DriverStatus" asp-action="Index" class="btn btn-primary">Go to</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="display-6">Assign</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Use this to assign drivers to available cars</p>
+                            <a asp-area="Manager" asp-controller="DriverAssign" asp-action="Index" class="btn btn-primary">Go to</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="display-6">Unassign</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Use this to unassign drivers to available cars</p>
+                            <a asp-area="Manager" asp-controller="DriverUnassign" asp-action="Index" class="btn btn-primary">Go to</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (User.IsInRole(Roles.MAINTENANCE))
+        {
+            <p>Here are all the actions you have available to you as maintenance</p>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="display-6">Car satus</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Use this to check the car status so they may be repaired</p>
+                            <a asp-area="Maintenance" asp-controller="CarStatus" asp-action="Index" class="btn btn-primary">Go to</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
 </div>

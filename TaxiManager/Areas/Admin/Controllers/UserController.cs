@@ -31,14 +31,14 @@ namespace TaxiManager.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(IdentityUser user)
+        public async Task<IActionResult> Delete(IdentityUser user)
         {
             if (user == null)
             {
                 return NotFound();
             }
-            var foundUser = _userManager.FindByIdAsync(user.Id).GetAwaiter().GetResult();
-            var result = _userManager.DeleteAsync(foundUser).GetAwaiter().GetResult();
+            var foundUser = await _userManager.FindByIdAsync(user.Id);
+            var result = await _userManager.DeleteAsync(foundUser);
             TempData["success"] = "User deleted successfully";
             return RedirectToAction("Index");
         }

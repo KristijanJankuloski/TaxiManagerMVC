@@ -9,12 +9,14 @@
         <div class="container-lg">
             <form method="post">
                 <h4>Available cars</h4>
-                <div class="mb-3">
+                <div class="row mb-3">
                     @foreach (var car in Model.Cars)
                     {
-                        <input type="hidden" hidden name="driverId" value="@Model.Driver.Id" />
-                        <input type="radio" name="carId" class="form-check-input" id="@car.LicensePlate" value="@car.Id" />
-                        <label for="@car.LicensePlate" class="form-check-label">@car.Model - @car.LicensePlate</label>
+                        <div class="col-3">
+                            <input type="hidden" hidden name="driverId" value="@Model.Driver.Id" />
+                            <input type="radio" name="carId" class="form-check-input" id="@car.LicensePlate" value="@car.Id" />
+                            <label for="@car.LicensePlate" class="form-check-label">@car.Model - @car.LicensePlate</label>
+                        </div>
                     }
                 </div>
                 <div class="mb-3">

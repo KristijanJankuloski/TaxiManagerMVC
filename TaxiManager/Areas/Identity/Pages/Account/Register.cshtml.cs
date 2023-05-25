@@ -25,6 +25,7 @@ using TaxiManager.Utils;
 
 namespace TaxiManager.Areas.Identity.Pages.Account
 {
+    [Authorize(Roles = Roles.ADMIN)]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -168,7 +169,7 @@ namespace TaxiManager.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        //await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }
                 }

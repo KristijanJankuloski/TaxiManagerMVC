@@ -18,7 +18,7 @@ The Taxi Manager application is a .NET MVC application designed to help manage d
 1. Clone the repository:
 
    ```shell
-   git clone https://github.com/your-username/your-repo.git
+   git clone https://github.com/chrissjj/TaxiManagerMVC.git
    ```
 2. Open the solution in your preferred IDE.
 3. Update the database connection string in the appsettings.json file with your own SQL Server connection string.
